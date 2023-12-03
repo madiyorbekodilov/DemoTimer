@@ -1,4 +1,5 @@
 ﻿@page "/countdown"
+
 <div style="margin-left:10%;margin-top:10%">
    @* <input  class="inputValue"  placeholder="vaqtni kiriting" type="number" />
     <h3 style="height:200px; width:1200px; font-size:50px">Countdown Timer</h3>*@
@@ -12,13 +13,13 @@
 
 
 @code {
-    private int totalTimeInSeconds = 43660;
+    private int totalTimeInSeconds = 54564;
     private string formattedTime = "0:00";
     private bool isRunning = false;
     private string inputValue = string.Empty;
 
 
-
+    
     private async Task StartTimer()
     {
 
