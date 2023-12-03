@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoTimer", "DemoTimer\DemoTimer.csproj", "{7015E19F-4ACD-4495-A6C8-34BEEF01661A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoTimer.Api", "DemoTimer.Api\DemoTimer.Api.csproj", "{BD9DCBE3-6FBF-4F65-AFB3-29B72E0736AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7015E19F-4ACD-4495-A6C8-34BEEF01661A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7015E19F-4ACD-4495-A6C8-34BEEF01661A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7015E19F-4ACD-4495-A6C8-34BEEF01661A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD9DCBE3-6FBF-4F65-AFB3-29B72E0736AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD9DCBE3-6FBF-4F65-AFB3-29B72E0736AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD9DCBE3-6FBF-4F65-AFB3-29B72E0736AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD9DCBE3-6FBF-4F65-AFB3-29B72E0736AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

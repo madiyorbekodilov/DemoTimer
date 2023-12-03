@@ -6,6 +6,9 @@
 
 main {
     flex: 1;
+    background-color:aqua;
+     width:max-content;
+    height:max-content;
 }
 
 .sidebar {
@@ -13,8 +16,14 @@ main {
     background-color: black;
 }
 
-.ferganskiy{
-    background-color : white;
+.ferganskiy {
+    /*background-color: black;*/
+    padding-left: 3%;
+    padding-top: 1%;
+    padding-right: 3%;
+    width:max-content;
+    height:max-content;
+
 }
 
 .top-row {
