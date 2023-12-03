@@ -1,6 +1,11 @@
-﻿body {
-    background-image: url("...\...\...\wwwroot\clock-life-timepiece-time-wallpaper-preview.jpg");
+﻿.background-container {
+    background-image: url('D:\Leetcode c#\DemoTimerUchun\DemoTimer\wwwroot\timee.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    height: 100vh; /* Adjust the height as needed */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
