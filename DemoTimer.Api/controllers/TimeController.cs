@@ -13,12 +13,13 @@ public class TimeController : BaseController
         this.timeService = timeService;
     }
     [HttpPost("create")]
-    public async ValueTask<IActionResult> PostAsync(TimeCreationDto dto)
+    public async ValueTask<IActionResult> PostAsync([FromHeader] int son)
         => Ok(new Response
         {
             StatusCode = 200,
             Message = "Success",
-            Data = await this.timeService.AddAsync(dto)
+            Data = await this.timeService.
+                AddAsync(new TimeCreationDto { SetTime = son, Title=$"77 chi holat"})
         });
 
     [HttpPost("get-all")]

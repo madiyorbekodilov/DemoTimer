@@ -18,7 +18,9 @@ public class TimeService : ITimeService
     public async Task<TimeResultDto> AddAsync(TimeCreationDto dto)
     {
         var mappedUser = mapper.Map<OldTime>(dto);
+        mappedUser.StartAt = mappedUser.EndAt.AddHours(mappedUser.SetTime*(-1));
         await this.repasitory.CreateAsync(mappedUser);
+        await this.repasitory.SaveAsync();
         var response = mapper.Map<TimeResultDto>(mappedUser);
         return response;
     }
