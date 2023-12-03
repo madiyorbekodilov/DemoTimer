@@ -1,48 +1,16 @@
 ﻿@page "/"
 @inherits ComponentBase
-@*<PageTitle >Index</PageTitle>
-
-
-<h1 style="color: red">Assalomu alekum </h1>
-*@@*
-<a  href="https://localhost:7230/countdown">
-    <button style=" InputNumber<int> = 0">Next Window</button>
-  </a>*@
-@*
-<form>
-    <label for="Daqiqa">Daqiqani kiriting</label><br />
-    <span id="result"></span>
-    
-    <a href="https://localhost:7230/countdown">
-    <input type="button" id="daqiqq" name="Daqiqa"/><br />
-    </a>
-</form>*@
-
-
-
-
-@*<input type="text" id="fname" name="fname" value="John">
-<button @onclick="UseInputValue">Use Input Value</button>
-
-<div class="output">Value will appear here</div>*@
-
-@*@code {
-    private string inputValue = "John";
-
-    private void UseInputValue()
-    {
-        // Use the input value
-        var outputElement = document.querySelector(".output");
-        outputElement.textContent = "Input Value: " + inputValue;
-    }
-}*@
-
-
-
+<PageTitle >Index</PageTitle>
 
 <label for="minutes">Enter minutes:</label>
-<input type="number" id="minutes" @bind="minutes" />
-<button @onclick="StartTimer">Start Timer</button>
+<input type="number" id="minutes" @bind="minutes" placeholder="daqiqa kiriting"/>
+
+<button @onclick="() => StartTimer()" disabled="@timerRunning" 
+    style="background-color:green; color:white; border-bottom-left-radius:10px;
+    border-bottom-right-radius:10px; margin-top:10px">Start Timer</button>
+<button @onclick="PauseResumeTimer" disabled="@(!timerRunning)">@(timerPaused ? "Resume" : "Pause") Timer</button>
+<button @onclick="StopTimer" disabled="@(!timerRunning)">Stop Timer</button>
+<button @onclick="RefreshTimer" disabled="@(!timerRunning || timerPaused)">Refresh Timer</button>
 
 <p>Time remaining: @formattedTime</p>
 
@@ -50,25 +18,51 @@
     private int minutes = 0;
     private TimeSpan remainingTime;
     private string formattedTime => remainingTime.ToString(@"hh\:mm\:ss");
-
+    private bool timerRunning = false;
+    private bool timerPaused = false;
     private System.Threading.Timer timer;
 
     private void StartTimer()
     {
-        remainingTime = TimeSpan.FromMinutes(minutes);
-        timer = new System.Threading.Timer(UpdateTimer, null, 0, 1000);
+        if (!timerRunning && minutes > 0)
+        {
+            remainingTime = TimeSpan.FromMinutes(minutes);
+            timer = new System.Threading.Timer(UpdateTimer, null, 0, 1000);
+            timerRunning = true;
+            InvokeAsync(StateHasChanged);
+        }
     }
 
     private void UpdateTimer(object state)
     {
-        if (remainingTime.TotalSeconds > 0)
+        if (remainingTime.TotalSeconds > 0 && !timerPaused)
         {
             remainingTime = remainingTime.Subtract(TimeSpan.FromSeconds(1));
             InvokeAsync(StateHasChanged);
         }
-        else
+        else if (remainingTime.TotalSeconds == 0)
         {
-            timer.Dispose();
+            StopTimer();
         }
+    }
+
+    private void PauseResumeTimer()
+    {
+        timerPaused = !timerPaused;
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void StopTimer()
+    {
+        timer.Dispose();
+        timerRunning = false;
+        remainingTime = TimeSpan.Zero;
+        InvokeAsync(StateHasChanged);
+    }
+
+    private void RefreshTimer()
+    {
+        StopTimer();
+        StartTimer();
     }
 }
