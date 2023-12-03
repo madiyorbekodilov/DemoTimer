@@ -1,9 +1,11 @@
 ﻿@page "/"
+@using System.Text;
+@using static System.Net.Mime.MediaTypeNames;
 @inherits ComponentBase
+
 <PageTitle >Index</PageTitle>
 
-
-
+@inject HttpClient httpClient
 
 
 
@@ -32,6 +34,7 @@
 
 @code {
     private int minutes = 0;
+    private int setdata = 0;
     private TimeSpan remainingTime;
     private string formattedTime => remainingTime.ToString(@"hh\:mm\:ss");
     private bool timerRunning = false;
@@ -40,8 +43,10 @@
 
     private void StartTimer()
     {
+        
         if (!timerRunning && minutes > 0)
         {
+            setdata = minutes;
             remainingTime = TimeSpan.FromMinutes(minutes);
             timer = new System.Threading.Timer(UpdateTimer, null, 0, 1000);
             timerRunning = true;
@@ -58,6 +63,7 @@
         }
         else if (remainingTime.TotalSeconds == 0)
         {
+            MakePostRequest(setdata);
             StopTimer();
         }
     }
@@ -80,5 +86,43 @@
     {
         StopTimer();
         StartTimer();
+    }
+
+    private async Task MakePostRequest(int minut)
+    {
+        try
+        {
+            // Specify the API endpoint
+            string apiUrl = "https://localhost:7120/api/Time/create";
+
+            var data = new Dictionary<string, int>
+            {
+                { "setData" , minut }
+            };
+
+            var jsonContent = new StringContent(System.Text.Json.JsonSerializer.Serialize(data), 
+            Encoding.UTF8, Application.Json);
+
+            
+            // Make a POST request
+            var response = await httpClient.PostAsync(apiUrl,jsonContent);
+
+            // Check if the request was successful
+            if (response.IsSuccessStatusCode)
+            {
+                // Process the successful response
+                var responseData = await response.Content.ReadAsStringAsync();
+                //Console.WriteLine(responseData);
+            }
+            else
+            {
+                // Handle non-successful response
+                //Console.WriteLine($"Error: {response.StatusCode} - {response.ReasonPhrase}");
+            }
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
     }
 }
