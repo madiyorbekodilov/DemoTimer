@@ -5,7 +5,9 @@ VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoTimer", "DemoTimer\DemoTimer.csproj", "{7015E19F-4ACD-4495-A6C8-34BEEF01661A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoTimer.Api", "DemoTimer.Api\DemoTimer.Api.csproj", "{BD9DCBE3-6FBF-4F65-AFB3-29B72E0736AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoTimer.Api", "DemoTimer.Api\DemoTimer.Api.csproj", "{BD9DCBE3-6FBF-4F65-AFB3-29B72E0736AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1DCA7B7A-EE47-4F32-9BB1-3BB1CC5DCAA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +26,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7015E19F-4ACD-4495-A6C8-34BEEF01661A} = {1DCA7B7A-EE47-4F32-9BB1-3BB1CC5DCAA2}
+		{BD9DCBE3-6FBF-4F65-AFB3-29B72E0736AB} = {1DCA7B7A-EE47-4F32-9BB1-3BB1CC5DCAA2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {70B6CC79-E81C-48C3-9CC1-6D04D4B61162}
